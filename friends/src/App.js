@@ -25,7 +25,12 @@ function App() {
 
     axios
       .post("http://localhost:5000/friends", newFriend)
-      .then(response => updateFriendList(response.data));
+      .then(response => {
+        updateFriendList(response.data);
+        updateFirstName("");
+        updateAge("");
+        updateEmail("");
+      });
   };
 
   const getFriends = () => {

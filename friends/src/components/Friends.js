@@ -1,5 +1,5 @@
 import React from "react";
-import Prop from 'prop-types';
+import Prop from "prop-types";
 
 export default function Friends({ friends }) {
   const listOfFriends = friends.map(friend => (
@@ -12,6 +12,14 @@ export default function Friends({ friends }) {
 
   return (
     <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Age</th>
+          <th>Email</th>
+        </tr>
+      </thead>
+
       <tbody>{listOfFriends}</tbody>
     </table>
   );
