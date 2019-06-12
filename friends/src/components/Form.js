@@ -1,29 +1,15 @@
-import React, { useState } from "react";
-import axios from "axios";
+import React from "react";
+import Prop from "prop-types";
 
-export default function Form() {
-  const [firstName, updateFirstName] = useState("");
-  const [age, updateAge] = useState("");
-  const [email, updateEmail] = useState("");
-
-  const changeName = e => updateFirstName(e.target.value);
-  const changeAge = e => updateAge(e.target.value);
-  const changeEmail = e => updateEmail(e.target.value);
-
-  const handleSubmit = e => {
-    e.preventDefault();
-
-    const newFriend = {
-      name: firstName,
-      age: Number(age),
-      email: email
-    };
-
-    axios
-      .post("http://localhost:5000/friends", newFriend)
-      .then(response => console.log(response));
-  };
-
+export default function Form({
+  firstName,
+  age,
+  email,
+  changeName,
+  changeAge,
+  changeEmail,
+  handleSubmit
+}) {
   return (
     <form onSubmit={handleSubmit}>
       <input
@@ -32,7 +18,9 @@ export default function Form() {
         value={firstName}
         onChange={changeName}
       />
+
       <input type="number" placeholder="Age" value={age} onChange={changeAge} />
+
       <input
         type="email"
         placeholder="Email"
@@ -44,3 +32,13 @@ export default function Form() {
     </form>
   );
 }
+
+Form.propTypes = {
+  firstName: Prop.string.isRequired,
+  age: Prop.string.isRequired,
+  email: Prop.string.isRequired,
+  changeName: Prop.func.isRequired,
+  changeAge: Prop.func.isRequired,
+  changeEmail: Prop.func.isRequired,
+  handleSubmit: Prop.func.isRequired
+};
