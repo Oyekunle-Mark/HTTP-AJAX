@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import styled from 'styled-components';
+import styled from "styled-components";
 
 const StyledNav = styled.nav`
   display: flex;
@@ -15,7 +15,7 @@ const StyledNav = styled.nav`
   }
 
   h1 {
-    font-family: 'Pacifico', cursive;
+    font-family: "Pacifico", cursive;
     font-size: 30px;
   }
 
