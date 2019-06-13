@@ -24,6 +24,7 @@ module.exports = {
     "object-shorthand": 0,
     "comma-dangle": 0,
     "react/button-has-type": 0,
-    "implicit-arrow-linebreak": 0
+    "implicit-arrow-linebreak": 0,
+    "react/jsx-one-expression-per-line": 0
   }
 };

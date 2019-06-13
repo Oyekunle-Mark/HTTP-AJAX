@@ -1,10 +1,28 @@
 import React, { useState, useEffect } from "react";
 import { Route } from "react-router-dom";
 import axios from "axios";
+import styled from "styled-components";
 
 import Friends from "./components/Friends";
 import Form from "./components/Form";
 import Navigation from "./components/Navigation";
+
+const StyledApp = styled.div`
+  display: flex;
+  flex-direction: column;
+  min-width: 100vw;
+  min-height: 100vh;
+  background: rgb(51, 50, 50);
+  color: rgb(236, 236, 236);
+  font-family: sans-serif;
+  font-size: 16px;
+`;
+
+const CreateUserForm = styled.div`
+  display: flex;
+  justify-content: center;
+  padding-top: 150px;
+`;
 
 function App() {
   const [friendList, updateFriendList] = useState([]);
@@ -83,10 +101,16 @@ function App() {
       });
   };
 
-  const cancelEditForm = () => updateCurrentlyEditedFried("");
+  const cancelEditForm = () => {
+    updateCurrentlyEditedFried("");
+    updateFirstName("");
+    updateAge("");
+    updateEmail("");
+    updateLocation("");
+  };
 
   return (
-    <div className="App">
+    <StyledApp>
       <Navigation />
 
       <Route
@@ -116,21 +140,23 @@ function App() {
       <Route
         path="/add_friend"
         render={props => (
-          <Form
-            {...props}
-            firstName={firstNameValue}
-            age={ageValue}
-            email={emailValue}
-            location={locationValue}
-            changeName={changeNameHandler}
-            changeAge={changeAgeHandler}
-            changeEmail={changeEmailHandler}
-            changeLocation={changeLocationHandler}
-            handleSubmit={createFriend}
-          />
+          <CreateUserForm>
+            <Form
+              {...props}
+              firstName={firstNameValue}
+              age={ageValue}
+              email={emailValue}
+              location={locationValue}
+              changeName={changeNameHandler}
+              changeAge={changeAgeHandler}
+              changeEmail={changeEmailHandler}
+              changeLocation={changeLocationHandler}
+              handleSubmit={createFriend}
+            />
+          </CreateUserForm>
         )}
       />
-    </div>
+    </StyledApp>
   );
 }
 

@@ -1,8 +1,26 @@
 import React from "react";
 import Prop from "prop-types";
+import styled from "styled-components";
 
-import FriendList from "./FriendList";
+import FriendCard from "./FriendCard";
 import Form from "./Form";
+
+const StyledFriendCards = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 70%;
+`;
+
+const StyledFriends = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+
+const StyledFriedForm = styled.div`
+  height: 300px;
+  margin: 30px 20px 0 0;
+`;
 
 export default function Friends({
   friends,
@@ -20,30 +38,37 @@ export default function Friends({
   editing,
   cancelEditing
 }) {
-  return (
-    <>
-      <FriendList
-        friends={friends}
-        removeFriend={removeFriend}
-        updateEditForm={updateEditForm}
-      />
+  const friendCard = friends.map(friend => (
+    <FriendCard
+      key={friend.id}
+      friend={friend}
+      removeFriend={removeFriend}
+      updateEditForm={updateEditForm}
+    />
+  ));
 
-      {editing && (
-        <Form
-          firstName={firstName}
-          age={age}
-          email={email}
-          location={location}
-          changeName={changeName}
-          changeAge={changeAge}
-          changeEmail={changeEmail}
-          changeLocation={changeLocation}
-          handleSubmit={updateFriend}
-          editing={editing}
-          cancelEditing={cancelEditing}
-        />
-      )}
-    </>
+  return (
+    <StyledFriends>
+      <StyledFriendCards>{friendCard}</StyledFriendCards>
+
+      <StyledFriedForm>
+        {editing && (
+          <Form
+            firstName={firstName}
+            age={age}
+            email={email}
+            location={location}
+            changeName={changeName}
+            changeAge={changeAge}
+            changeEmail={changeEmail}
+            changeLocation={changeLocation}
+            handleSubmit={updateFriend}
+            editing={editing}
+            cancelEditing={cancelEditing}
+          />
+        )}
+      </StyledFriedForm>
+    </StyledFriends>
   );
 }
 

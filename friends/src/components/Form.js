@@ -1,5 +1,41 @@
 import React from "react";
 import Prop from "prop-types";
+import styled from "styled-components";
+
+const StyledForm = styled.form`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 260px;
+  background: rgb(128, 128, 128);
+  padding: 20px;
+  border-radius: 7px;
+
+  input {
+    width: 250px;
+    height: 25px;
+    margin: 10px 0;
+    border: 1px solid rgb(27, 27, 27);
+    border-radius: 3px;
+    font-size: 12px;
+    padding: 3px;
+  }
+
+  button {
+    width: 150px;
+    height: 30px;
+    background: rgb(27, 27, 27);
+    color: rgb(236, 236, 236);
+    border: 1px solid rgb(27, 27, 27);
+    border-radius: 3px;
+    box-shadow: 0 0 2px 2px rgb(85, 85, 85);
+    margin-top: 10px;
+  }
+
+  button:hover {
+    cursor: pointer;
+  }
+`;
 
 export default function Form({
   firstName,
@@ -15,7 +51,7 @@ export default function Form({
   cancelEditing
 }) {
   return (
-    <form onSubmit={handleSubmit}>
+    <StyledForm onSubmit={handleSubmit}>
       <input
         type="text"
         placeholder="Name"
@@ -41,8 +77,8 @@ export default function Form({
 
       {editing && <button onClick={cancelEditing}>Cancel</button>}
 
-      <button type="submit">Save Button</button>
-    </form>
+      <button type="submit">Add Friend</button>
+    </StyledForm>
   );
 }
 
