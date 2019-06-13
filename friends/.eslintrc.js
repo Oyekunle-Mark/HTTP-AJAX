@@ -23,6 +23,7 @@ module.exports = {
     "no-console": 0,
     "object-shorthand": 0,
     "comma-dangle": 0,
-    "react/button-has-type": 0
+    "react/button-has-type": 0,
+    "implicit-arrow-linebreak": 0
   }
 };

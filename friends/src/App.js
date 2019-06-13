@@ -11,12 +11,14 @@ function App() {
   const [firstNameValue, updateFirstName] = useState("");
   const [ageValue, updateAge] = useState("");
   const [emailValue, updateEmail] = useState("");
+  const [locationValue, updateLocation] = useState("");
   const [currentlyEditedFriend, updateCurrentlyEditedFried] = useState("");
 
   const generateNewFriendObject = () => ({
     name: firstNameValue,
     age: Number(ageValue),
-    email: emailValue
+    email: emailValue,
+    location: locationValue
   });
 
   const getFriends = () => {
@@ -33,6 +35,7 @@ function App() {
   const changeNameHandler = e => updateFirstName(e.target.value);
   const changeAgeHandler = e => updateAge(e.target.value);
   const changeEmailHandler = e => updateEmail(e.target.value);
+  const changeLocationHandler = e => updateLocation(e.target.value);
 
   const createFriend = e => {
     e.preventDefault();
@@ -44,6 +47,7 @@ function App() {
         updateFirstName("");
         updateAge("");
         updateEmail("");
+        updateLocation("");
       });
   };
 
@@ -53,11 +57,12 @@ function App() {
     });
   };
 
-  const populateEditForm = (id, name, age, email) => {
+  const populateEditForm = (id, name, age, email, location) => {
     updateCurrentlyEditedFried(id.toString());
     updateFirstName(name);
     updateAge(age.toString());
     updateEmail(email);
+    updateLocation(location);
   };
 
   const editFriend = e => {
@@ -74,6 +79,7 @@ function App() {
         updateFirstName("");
         updateAge("");
         updateEmail("");
+        updateLocation("");
       });
   };
 
@@ -94,9 +100,11 @@ function App() {
             firstName={firstNameValue}
             age={ageValue}
             email={emailValue}
+            location={locationValue}
             changeName={changeNameHandler}
             changeAge={changeAgeHandler}
             changeEmail={changeEmailHandler}
+            changeLocation={changeLocationHandler}
             editing={currentlyEditedFriend}
           />
         )}
@@ -110,9 +118,11 @@ function App() {
             firstName={firstNameValue}
             age={ageValue}
             email={emailValue}
+            location={locationValue}
             changeName={changeNameHandler}
             changeAge={changeAgeHandler}
             changeEmail={changeEmailHandler}
+            changeLocation={changeLocationHandler}
             handleSubmit={createFriend}
           />
         )}

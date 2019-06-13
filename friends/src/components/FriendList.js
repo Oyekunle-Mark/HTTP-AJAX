@@ -7,12 +7,21 @@ export default function Friends({ friends, removeFriend, updateEditForm }) {
       <td>{friend.name}</td>
       <td>{friend.age}</td>
       <td>{friend.email}</td>
+      <td>{friend.location}</td>
       <td>
         <button onClick={() => removeFriend(friend.id)}>Delete</button>
       </td>
       <td>
         <button
-          onClick={() => updateEditForm(friend.id, friend.name, friend.age, friend.email)}
+          onClick={() =>
+            updateEditForm(
+              friend.id,
+              friend.name,
+              friend.age,
+              friend.email,
+              friend.location
+            )
+          }
         >
           Edit
         </button>
@@ -27,6 +36,7 @@ export default function Friends({ friends, removeFriend, updateEditForm }) {
           <th>Name</th>
           <th>Age</th>
           <th>Email</th>
+          <th>Location</th>
         </tr>
       </thead>
 
