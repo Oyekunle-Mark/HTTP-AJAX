@@ -1,12 +1,15 @@
 import React from "react";
 import Prop from "prop-types";
 
-export default function Friends({ friends }) {
+export default function Friends({ friends, removeFriend }) {
   const listOfFriends = friends.map(friend => (
     <tr key={friend.id}>
       <td>{friend.name}</td>
       <td>{friend.age}</td>
       <td>{friend.email}</td>
+      <td>
+        <button onClick={() => removeFriend(friend.id)}>Delete</button>
+      </td>
     </tr>
   ));
 
@@ -26,5 +29,6 @@ export default function Friends({ friends }) {
 }
 
 Friends.propTypes = {
-  friends: Prop.arrayOf(Prop.object).isRequired
+  friends: Prop.arrayOf(Prop.object).isRequired,
+  removeFriend: Prop.func.isRequired
 };

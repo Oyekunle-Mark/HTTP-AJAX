@@ -22,6 +22,7 @@ module.exports = {
     "arrow-parens": 0,
     "no-console": 0,
     "object-shorthand": 0,
-    "comma-dangle": 0
+    "comma-dangle": 0,
+    "react/button-has-type": 0
   }
 };

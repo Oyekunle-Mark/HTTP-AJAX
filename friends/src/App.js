@@ -10,6 +10,17 @@ function App() {
   const [ageValue, updateAge] = useState("");
   const [emailValue, updateEmail] = useState("");
 
+  const getFriends = () => {
+    axios
+      .get("http://localhost:5000/friends")
+      .then(response => updateFriendList(response.data))
+      .catch(error => console.log(error.message));
+  };
+
+  useEffect(() => {
+    getFriends();
+  }, []);
+
   const changeNameHandler = e => updateFirstName(e.target.value);
   const changeAgeHandler = e => updateAge(e.target.value);
   const changeEmailHandler = e => updateEmail(e.target.value);
@@ -33,16 +44,13 @@ function App() {
       });
   };
 
-  const getFriends = () => {
+  const deleteFriend = id => {
     axios
-      .get("http://localhost:5000/friends")
-      .then(response => updateFriendList(response.data))
-      .catch(error => console.log(error.message));
+      .delete(`http://localhost:5000/friends/${id}`)
+      .then(response => {
+        updateFriendList(response.data);
+      });
   };
-
-  useEffect(() => {
-    getFriends();
-  }, []);
 
   return (
     <div className="App">
@@ -56,7 +64,7 @@ function App() {
         handleSubmit={handleSubmit}
       />
 
-      <Friends friends={friendList} />
+      <Friends friends={friendList} removeFriend={deleteFriend} />
     </div>
   );
 }
