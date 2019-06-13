@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
+import { Route } from "react-router-dom";
 import axios from "axios";
 
 import Friends from "./components/Friends";
 import Form from "./components/Form";
+import Navigation from "./components/Navigation";
 
 function App() {
   const [friendList, updateFriendList] = useState([]);
@@ -52,7 +54,7 @@ function App() {
   };
 
   const populateEditForm = (id, name, age, email) => {
-    updateCurrentlyEditedFried(id);
+    updateCurrentlyEditedFried(id.toString());
     updateFirstName(name);
     updateAge(age.toString());
     updateEmail(email);
@@ -77,28 +79,43 @@ function App() {
 
   return (
     <div className="App">
-      <Form
-        firstName={firstNameValue}
-        age={ageValue}
-        email={emailValue}
-        changeName={changeNameHandler}
-        changeAge={changeAgeHandler}
-        changeEmail={changeEmailHandler}
-        handleSubmit={createFriend}
+      <Navigation />
+
+      <Route
+        exact
+        path="/"
+        render={props => (
+          <Friends
+            {...props}
+            friends={friendList}
+            removeFriend={deleteFriend}
+            updateFriend={editFriend}
+            updateEditForm={populateEditForm}
+            firstName={firstNameValue}
+            age={ageValue}
+            email={emailValue}
+            changeName={changeNameHandler}
+            changeAge={changeAgeHandler}
+            changeEmail={changeEmailHandler}
+            editing={currentlyEditedFriend}
+          />
+        )}
       />
 
-      <Friends
-        friends={friendList}
-        removeFriend={deleteFriend}
-        updateFriend={editFriend}
-        updateEditForm={populateEditForm}
-        firstName={firstNameValue}
-        age={ageValue}
-        email={emailValue}
-        changeName={changeNameHandler}
-        changeAge={changeAgeHandler}
-        changeEmail={changeEmailHandler}
-        editing={currentlyEditedFriend}
+      <Route
+        path="/add_friend"
+        render={props => (
+          <Form
+            {...props}
+            firstName={firstNameValue}
+            age={ageValue}
+            email={emailValue}
+            changeName={changeNameHandler}
+            changeAge={changeAgeHandler}
+            changeEmail={changeEmailHandler}
+            handleSubmit={createFriend}
+          />
+        )}
       />
     </div>
   );
