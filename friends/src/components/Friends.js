@@ -1,34 +1,55 @@
 import React from "react";
 import Prop from "prop-types";
 
-export default function Friends({ friends, removeFriend }) {
-  const listOfFriends = friends.map(friend => (
-    <tr key={friend.id}>
-      <td>{friend.name}</td>
-      <td>{friend.age}</td>
-      <td>{friend.email}</td>
-      <td>
-        <button onClick={() => removeFriend(friend.id)}>Delete</button>
-      </td>
-    </tr>
-  ));
+import FriendList from "./FriendList";
+import Form from "./Form";
 
+export default function Friends({
+  friends,
+  removeFriend,
+  updateFriend,
+  updateEditForm,
+  firstName,
+  age,
+  email,
+  changeName,
+  changeAge,
+  changeEmail,
+  editing
+}) {
   return (
-    <table>
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Age</th>
-          <th>Email</th>
-        </tr>
-      </thead>
+    <>
+      <FriendList
+        friends={friends}
+        removeFriend={removeFriend}
+        updateEditForm={updateEditForm}
+      />
 
-      <tbody>{listOfFriends}</tbody>
-    </table>
+      {editing && (
+        <Form
+          firstName={firstName}
+          age={age}
+          email={email}
+          changeName={changeName}
+          changeAge={changeAge}
+          changeEmail={changeEmail}
+          handleSubmit={updateFriend}
+        />
+      )}
+    </>
   );
 }
 
 Friends.propTypes = {
   friends: Prop.arrayOf(Prop.object).isRequired,
-  removeFriend: Prop.func.isRequired
+  removeFriend: Prop.func.isRequired,
+  firstName: Prop.string.isRequired,
+  age: Prop.string.isRequired,
+  email: Prop.string.isRequired,
+  changeName: Prop.func.isRequired,
+  changeAge: Prop.func.isRequired,
+  changeEmail: Prop.func.isRequired,
+  updateFriend: Prop.func.isRequired,
+  updateEditForm: Prop.func.isRequired,
+  editing: Prop.string.isRequired
 };
