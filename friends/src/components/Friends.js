@@ -17,7 +17,8 @@ export default function Friends({
   changeAge,
   changeEmail,
   changeLocation,
-  editing
+  editing,
+  cancelEditing
 }) {
   return (
     <>
@@ -38,6 +39,8 @@ export default function Friends({
           changeEmail={changeEmail}
           changeLocation={changeLocation}
           handleSubmit={updateFriend}
+          editing={editing}
+          cancelEditing={cancelEditing}
         />
       )}
     </>
@@ -57,5 +60,6 @@ Friends.propTypes = {
   changeLocation: Prop.func.isRequired,
   updateFriend: Prop.func.isRequired,
   updateEditForm: Prop.func.isRequired,
-  editing: Prop.string.isRequired
+  editing: Prop.string.isRequired,
+  cancelEditing: Prop.func.isRequired
 };

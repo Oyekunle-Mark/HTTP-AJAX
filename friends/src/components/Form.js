@@ -10,7 +10,9 @@ export default function Form({
   changeAge,
   changeEmail,
   changeLocation,
-  handleSubmit
+  handleSubmit,
+  editing,
+  cancelEditing
 }) {
   return (
     <form onSubmit={handleSubmit}>
@@ -37,6 +39,8 @@ export default function Form({
         onChange={changeLocation}
       />
 
+      {editing && <button onClick={cancelEditing}>Cancel</button>}
+
       <button type="submit">Save Button</button>
     </form>
   );
@@ -51,5 +55,12 @@ Form.propTypes = {
   changeAge: Prop.func.isRequired,
   changeEmail: Prop.func.isRequired,
   changeLocation: Prop.func.isRequired,
-  handleSubmit: Prop.func.isRequired
+  handleSubmit: Prop.func.isRequired,
+  editing: Prop.string,
+  cancelEditing: Prop.func
+};
+
+Form.defaultProps = {
+  editing: "",
+  cancelEditing: f => f
 };

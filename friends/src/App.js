@@ -83,6 +83,8 @@ function App() {
       });
   };
 
+  const cancelEditForm = () => updateCurrentlyEditedFried("");
+
   return (
     <div className="App">
       <Navigation />
@@ -106,6 +108,7 @@ function App() {
             changeEmail={changeEmailHandler}
             changeLocation={changeLocationHandler}
             editing={currentlyEditedFriend}
+            cancelEditing={cancelEditForm}
           />
         )}
       />
