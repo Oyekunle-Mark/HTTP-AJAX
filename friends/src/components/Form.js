@@ -77,7 +77,7 @@ export default function Form({
 
       {editing && <button onClick={cancelEditing}>Cancel</button>}
 
-      <button type="submit">Add Friend</button>
+      <button type="submit">{editing ? "Edit Friend" : "Add Friend"}</button>
     </StyledForm>
   );
 }
